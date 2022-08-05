@@ -1,0 +1,12 @@
+install.packages("shiny")
+install.packages("shinythemes")
+install.packages("readx1")
+install.packages("readx1")
+install.packages("stringr")
+install.packages("fs")
+install.packages("exiftoolr")
+install.packages("magick")
+install.packages("utils")
+install.packages("zip")
+install.packages("qpcR")  
+

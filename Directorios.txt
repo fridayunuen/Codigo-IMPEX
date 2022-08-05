@@ -1,0 +1,5 @@
+# Direcotirio Padre
+DirectorioPadre<-"C:\\Users\\fcolin\\Documents\\Aplicacion"
+
+# Carpeta Imagenes Shasa
+drive<-"C:\\Users\\fcolin\\SERVICIOS SHASA S DE RL DE CV\\Fotos Shasa - Fotografía"
