@@ -1,6 +1,6 @@
-source("Directorios.txt")
+#source("Directorios.txt")
 
-#DirectorioPadre<-getwd()
+DirectorioPadre<-getwd()
 setwd(DirectorioPadre)
 
 carpeta<-choose.dir(caption = "Seleccione la carpeta que contiene las imagenes")

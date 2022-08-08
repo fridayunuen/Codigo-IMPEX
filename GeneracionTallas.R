@@ -69,8 +69,8 @@ reporte<-rbind(
   vsku,
   terminacion,
   total_img_incopletas,
-  df, 
-  reporte2)
+  df) 
+  #reporte2)
 
 
 # Imprimiendo cuadro de dialago que informa que hay errores

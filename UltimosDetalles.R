@@ -16,13 +16,17 @@ if (sum(list.files()==n)>0) {
 
   setwd(guardar)
   
-  file.rename(n, "Resultados")
+  res<-paste("Resultados-", basename(carpeta), sep = "")
   
+  
+  file.rename(n, res)
+  
+  resdir<-paste("\\", res, sep= "")
 }else{
-  dir.create(paste(guardar, "\\Resultados", sep ="" ))
+  dir.create(paste(guardar, resdir, sep ="" ))
 }
 
-resultados<-paste(guardar, "\\Resultados", sep ="" )
+resultados<-paste(guardar, resdir, sep ="" )
 
 setwd(carpeta)
 zip("ImportarZIP.zip", list.files())

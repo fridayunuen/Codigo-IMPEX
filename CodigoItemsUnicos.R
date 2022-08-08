@@ -5,8 +5,8 @@ Medidas<-c("1200Wx1200H", "515Wx515H","300Wx300H","96Wx96H","65Wx65H","30Wx30H")
 setwd(DirectorioPadre)
 # source("ItemsUnicosFamilia.R")
 
-archivos<-items_unicos
-
+# archivos<-items_unicos
+archivos<- list.files(carpeta)
 
 
 setwd(carpeta)

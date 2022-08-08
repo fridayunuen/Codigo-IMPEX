@@ -59,11 +59,11 @@ if (is.na(carpeta) | is.na(guardar)) {
     setTkProgressBar(pb, w, label = pctg)
     w<-w+1
     
-    setwd(DirectorioPadre)
-    source("ItemsUnicosFamilia.R")
-    pctg <- paste(round(w/11 *100, 0), "% completado")
-    setTkProgressBar(pb, w, label = pctg)
-    w<-w+1
+    #setwd(DirectorioPadre)
+    #source("ItemsUnicosFamilia.R")
+    #pctg <- paste(round(w/11 *100, 0), "% completado")
+    #setTkProgressBar(pb, w, label = pctg)
+    #w<-w+1
     
     setwd(DirectorioPadre)
     source("CodigoItemsUnicos.R")
@@ -71,11 +71,11 @@ if (is.na(carpeta) | is.na(guardar)) {
     setTkProgressBar(pb, w, label = pctg)
     w<-w+1
     
-    setwd(DirectorioPadre)
-    source("CodigoItemsFamilia.R")
-    pctg <- paste(round(w/11 *100, 0), "% completado")
-    setTkProgressBar(pb, w, label = pctg)
-    w<-w+1
+    # setwd(DirectorioPadre)
+    # source("CodigoItemsFamilia.R")
+    # pctg <- paste(round(w/11 *100, 0), "% completado")
+    # setTkProgressBar(pb, w, label = pctg)
+    # w<-w+1
     
     setwd(DirectorioPadre)
     source("UltimosDetalles.R")

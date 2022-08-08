@@ -9,8 +9,8 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Aplicación 
-## Genaración código IMPEX 
+ 
+# Genaración código IMPEX 
 
 El propósito del presente programa es la creación de las herramientas necesarias para subir a la plataforma BackOffice(SAP) una carpeta que contiene imagenes de productos (.jpg) con distintas dimensiones, el nombre de estas esta compuesto por su tamaño, sku(10 digitos) y vista (Frontal, Izquierda, Derecha y/o Trasera). 
 
@@ -61,5 +61,21 @@ Se realiza un primer filtro con uso de metadatos:
 ### CodigoItemsFamilia
 
 
+### Ultimos detalles
 
+Se regresan las imagenes innecesarias(los tamaños que no se ven reflejados en IMPEX) a la carpeta origen para que todo lo que se necesite subir quede en un solo lugar y se procede a enviar todo eso a un archivo Zip, este a su vez es enviado a una carpeta de resultados, si la carpeta de errores esta vacia se elimina. 
+
+### Lotes
+
+Si todo el proceso viene de un archivo mayor al requerimiento (32 megas) se dividen la carpeta de imagenes para que Back Office lo pueda soportar. 
+
+### Impresion 
+
+Finalmente en este script, si todo el procedimiento fue existoso, se muestra un mensaje para el usuario y los impex generados se crean en formato txt, además de un reporte que menciona que items son los que se le creó el impex. 
+
+
+## Reetiquetado
+
+
+Este programa esta pensado para realizar un reetiquetado si se encuentra una imagen que contenga la palabra Error en su etiqueta, consta de dos archivos, el primero es .ipynb, ahí se explica con claridad que es lo que se realiza en cada seccion. El archivo Ejecutable_Reetiquetado.py es la versión que esta pensada para ejecutar desde consola. 
 

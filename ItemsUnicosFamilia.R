@@ -1,43 +1,4 @@
-# Tamanos necesarios ------------------------------------------------------
-# Se seleccionan solo los tamanos necesarios, el resto va a una carpta para reducir espacio
 
-setwd(carpeta)
-imagenes<-list.files()
-
-tamanos_necesarios<-c("1200Wx1200H", "515Wx515H", "400Wx600H", "96Wx96H", "65Wx65H","40Wx40H")
-
-z<-rep(F, times=length(imagenes))
-
-for (i in 1:length(tamanos_necesarios)) {
-  
-  f<-c(str_detect(imagenes, tamanos_necesarios[i]))
-  z<-cbind(z,f)
-}
-
-###########################
-
-if (length(imagenes[!as.logical(rowSums(z))])==0) {
-  print("Carpeta solo contiene imagenes necesarias")
-}else{
-  di_img_in<-guardar
-  setwd(di_img_in)
-  
-  n<-paste("imagenes_innecesarias",basename(carpeta), sep="" )
-  
-  dir.create(n)
-  
-  di_img_in<-paste(di_img_in, "\\",n, sep = "")
-  
-  setwd(di_img_in)
-  
-  file_move(paste(carpeta, "\\", imagenes[!as.logical(rowSums(z))], sep=""), di_img_in)
-  
-  print("Se han seleccionado solo las imagenes necesarias")
-  
-  setwd(carpeta)
-  
-  imagenes<-list.files(carpeta)
-}
 
 
 

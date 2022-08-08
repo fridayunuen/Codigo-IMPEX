@@ -32,7 +32,7 @@ lista <- NULL
 while (!identical(imagenes, character(0))) {
   setwd(carpeta)
   r <- r + 1
-  items<-unique(substr(sku(imagenes), 1, 7))
+  items<-unique(substr(sku(imagenes), 1, 10))
   # Obteniendo un data frame con el sku y el peso de todas las imagenes
   z <- NULL
   for(i in 1:length(items)) {

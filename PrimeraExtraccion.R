@@ -28,11 +28,11 @@ sku<-function(imagenes){
 
 imagenes <- list.files(carpeta)
 # extact items from name
-items <-unique(substr(sku(imagenes), 1, 7))
+items <-unique(substr(sku(imagenes), 1, 10))
 
 extraccion <- as.character(extraer$VarianteColor)
 
-extraccion <- unique(substr(extraccion, start = 1, 7))
+extraccion <- unique(substr(extraccion, start = 1, 10))
 
 reporte <- NULL
 moverzip <- NULL
