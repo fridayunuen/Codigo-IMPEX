@@ -68,3 +68,7 @@ Finalmente en este script, si todo el procedimiento fue existoso, se muestra un 
 
 
 Este programa esta pensado para realizar un reetiquetado si se encuentra una imagen que contenga la palabra Error en su etiqueta, consta de dos archivos, el primero es .ipynb, ahí se explica con claridad que es lo que se realiza en cada seccion. El archivo Ejecutable_Reetiquetado.py es la versión que esta pensada para ejecutar desde consola. 
+
+
+## Diagrama del proceso Final 
+![Procedimiento propuesto a seguir](1.png)
