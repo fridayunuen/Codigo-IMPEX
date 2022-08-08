@@ -34,9 +34,6 @@ if (is.na(carpeta) | is.na(guardar)) {
     setTkProgressBar(pb, w, label = pctg)
     w<-w+1
     
-
-
-
     setwd(DirectorioPadre)
     source("VerificandoString.R")
     pctg <- paste(round(w/11 *100, 0), "% completado")

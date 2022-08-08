@@ -14,7 +14,7 @@ setwd(carpeta)
 # Definiendo bloques de acuerdo al SKU ------------------------------------
 
 codigo<-NULL
-codigo3<-NULL
+
 
 
 id<-unique(sku(archivos))
@@ -179,12 +179,12 @@ if (identical(archivos, character(0))) {
             "_",
             substr(talla, 8, nchar(talla)), sep = "")
   
-  codigo2<-c(codigo2,
-             paste(";", ranura,";/", Medidas[1],"/",id[i],
-                   ";/", Medidas[4],"/",id[i],";/", Medidas[3],"/",id[i],";/", 
-                   Medidas[2],"/",id[i],";/", Medidas[6],"/",id[i],",/", 
-                   Medidas[5],"/",id[i],";/", Medidas[6],"/"  ,id[i],";",z, ";",
-                   sep = ""))
+  
+  allranuras<-c(replicate(ranura, n = length(tipo)))
+  allranuras<-allranuras[str_order(allranuras)]
+
+  
+  codigo2<-c(codigo2,paste(";", allranuras,";/",  tipo, Medidas[1],"/",id[i],";/",   tipo,      Medidas[4],"/",id[i],";/", tipo,        Medidas[3],"/",id[i],";/",tipo,         Medidas[2],"/",id[i],";/", tipo,         Medidas[6],"/",id[i],",/",  tipo,       Medidas[5],"/",id[i],";/", tipo,Medidas[6],"/"  ,id[i],";",z, ";",sep = ""))
   
   n<-length(bloque2)
   N<-length(codigo2)+n
