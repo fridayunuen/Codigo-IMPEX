@@ -2,9 +2,8 @@ library(stringr)
 library(fs)
 library(readxl)
 library(zip)
-source("Directorios.txt")
 
-DirectorioPadre <- paste("C:/Users/", Sys.info()["user"], "/Downloads/Aplicacion", sep = "" )
+DirectorioPadre <- paste("C:/Users/", Sys.info()["user"], "/Downloads/Aplicacion/Codigo-IMPEX", sep = "" )
 setwd(DirectorioPadre)
 
 
