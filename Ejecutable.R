@@ -1,6 +1,6 @@
 #source("Directorios.txt")
 
-DirectorioPadre<-paste("C:/Users/", Sys.info()["user"], "/Downloads/Aplicacion", sep = "" )
+DirectorioPadre<-paste("C:/Users/", Sys.info()["user"], "/Downloads/Aplicacion/Codigo-IMPEX", sep = "" )
 setwd(DirectorioPadre)
 
 carpeta<-choose.dir(caption = "Seleccione la carpeta que contiene las imagenes")
