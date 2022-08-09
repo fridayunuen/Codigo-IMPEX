@@ -31,8 +31,8 @@ if (identical(archivos, character(0))) {
 
 # Carga de media ----------------------------------------------------------
   
-  bloque<-c("$productCatalog=shasaProductCatalog",
-            "$productCatalogName=shasaProductCatalog",
+  bloque<-c("$productCatalog=default",
+            "$productCatalogName=default",
             "$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]",
             "$media=@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator]",
             "$medias=medias(code, $catalogVersion)",
