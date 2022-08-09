@@ -1,6 +1,6 @@
 #source("Directorios.txt")
 
-DirectorioPadre<-getwd()
+DirectorioPadre<-paste("C:/Users/", Sys.info()["user"], "/Downloads/Aplicacion", sep = "" )
 setwd(DirectorioPadre)
 
 carpeta<-choose.dir(caption = "Seleccione la carpeta que contiene las imagenes")

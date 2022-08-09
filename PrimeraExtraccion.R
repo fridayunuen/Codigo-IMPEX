@@ -4,8 +4,11 @@ library(readxl)
 library(zip)
 source("Directorios.txt")
 
-DirectorioPadre <- getwd()
+DirectorioPadre <- paste("C:/Users/", Sys.info()["user"], "/Downloads/Aplicacion", sep = "" )
 setwd(DirectorioPadre)
+
+
+drive<-paste("C:\\Users\\", Sys.info()["user"],"\\SERVICIOS SHASA S DE RL DE CV\\Fotos Shasa - Fotografía", sep =)
 
 carpeta<-drive
 

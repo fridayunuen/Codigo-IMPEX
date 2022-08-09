@@ -55,6 +55,23 @@ if len(error_paths) == 0:
     win32ui.MessageBox("La carpeta no contiene archivos con error :)", "Mensaje",0)
     exit()
 
+
+ec = "S:\OMNI\ErroresCorregidos"
+# if exists ec folder, the program continues
+if not os.path.exists(ec):
+    win32ui.MessageBox("Es necesario tener acceso a la carpeta S:\OMNI", "Error",0)
+    exit()
+    
+
+
+if os.path.exists(ec):
+    # print("La carpeta de errores corregidos existe")
+    pass
+else:
+    os.mkdir(ec)    
+
+
+
 inicio=win32ui.MessageBox("Para reetiquetar las imagenes de acuerdo a la posición del item, utiliza las teclas: \n\n W: Frontal \n S: Trasera \n A: Izquierda \n D: Derecha", "Instrucciones Generales",1)
 if inicio==2:
     exit()
@@ -214,7 +231,6 @@ for i in range(len(principales)):
                     imagen3 = imagen3.replace(tipo, new_label)
                     os.rename(imagen2, imagen3)
 
-ec = "S:\TOM CARGAS MASIVAS\ErroresCorregidos"
 if not os.path.exists(ec):
     os.mkdir(ec)
 
@@ -273,4 +289,6 @@ if os.listdir(carpeta + "\\Errores") == []:
 else:
     win32ui.MessageBox("Hubo un error, revisar carpeta", "Error", 0)
 
-del  carpeta, files, paths, principales, imagen, new_label        
+del  carpeta, files, paths, principales, imagen, new_label   
+
+print("Reetiquetado completado :)")
