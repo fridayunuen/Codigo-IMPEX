@@ -43,8 +43,11 @@ for (i in 1:length(extraccion)) {
 
   if (identical(item, character(0))) {
     reporte <- c(reporte, extraccion[i])
+    print(paste(item, "no encontrado"))
   }else{
     moverzip <- c(moverzip, imagenes[str_detect(imagenes, item)])
+    print(paste(item, "extraido"))
+
     }
 }
 
