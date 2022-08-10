@@ -6,7 +6,6 @@ library(zip)
 DirectorioPadre <- paste("C:/Users/", Sys.info()["user"], "/Downloads/Aplicacion/Codigo-IMPEX", sep = "" )
 setwd(DirectorioPadre)
 
-
 drive<-paste("C:/Users/", Sys.info()["user"],"/SERVICIOS SHASA S DE RL DE CV/Fotos Shasa - Fotografía", sep ="")
 
 carpeta<-drive
