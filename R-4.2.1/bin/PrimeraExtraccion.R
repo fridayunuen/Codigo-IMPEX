@@ -7,7 +7,7 @@ DirectorioPadre <- paste("C:/Users/", Sys.info()["user"], "/Downloads/Aplicacion
 setwd(DirectorioPadre)
 
 
-drive<-paste("C:\\Users\\", Sys.info()["user"],"\\SERVICIOS SHASA S DE RL DE CV\\Fotos Shasa - Fotografía", sep =)
+drive<-paste("C:/Users/", Sys.info()["user"],"/SERVICIOS SHASA S DE RL DE CV/Fotos Shasa - Fotografía", sep ="")
 
 carpeta<-drive
 
