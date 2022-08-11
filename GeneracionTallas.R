@@ -61,7 +61,7 @@ reporte<-NULL
 
 reporte<-rbind(
   errores,
-  extension,
+  #extension,
   vmedidas,
   espacio,
   nom,

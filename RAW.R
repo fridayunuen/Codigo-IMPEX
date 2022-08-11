@@ -59,14 +59,14 @@ setwd(carpeta)
   # Extensiones permitidas-------------------------------------
   
   
-  info<-exif_read(imagenes)
-  
-  extension<-if (sum(info$FileTypeExtension!="JPG")>0 ) {
-    data.frame("Estado"= c("Formato del archivo no admitido en:"),
-               "Archivo"=imagenes[!info$FileTypeExtension =="JPG"])
-  }
-  
-  subreporte(extension, mensaje = "Carpeta sin errores en el tipo de extension")
-  imagenes<-list.files(carpeta)
+ # info<-exif_read(imagenes)
+ # 
+ # extension<-if (sum(info$FileTypeExtension!="JPG")>0 ) {
+ #   data.frame("Estado"= c("Formato del archivo no admitido en:"),
+ #              "Archivo"=imagenes[!info$FileTypeExtension =="JPG"])
+ # }
+ # 
+ # subreporte(extension, mensaje = "Carpeta sin errores en el tipo de extension")
+ # imagenes<-list.files(carpeta)
 
   

@@ -27,8 +27,14 @@ nombre <- function(imagenes){
 requerimiento <- (megas * 1000000)
 
 library(zip)
-imagenes <- list.files(carpeta)
+ 
+ 
+imagenes <- list.files(carpeta, include.dirs = F)
 imagenes<-imagenes[jpg==".jpg"]
+
+imagenes<-imagenes[!is.na(sku(imagenes))]
+
+
 r <- 0
 
 lista <- NULL
