@@ -1,8 +1,10 @@
-DirectorioPadre <- getwd()
+# DirectorioPadre <- getwd()
 setwd(DirectorioPadre)
 
-carpeta <- choose.dir( caption = "Seleccione la carpeta que contiene las imagenes")
-guardar <- choose.dir( caption = "Seleccione la carpeta donde se guardaran los lotes")
+# carpeta <- choose.dir( caption = "Seleccione la carpeta que contiene las imagenes")
+# guardar <- choose.dir( caption = "Seleccione la carpeta donde se guardaran los lotes")
+carpeta<-guardar 
+guardar<-carpeta
 
 megas <- 32
 
@@ -26,6 +28,7 @@ requerimiento <- (megas * 1000000)
 
 library(zip)
 imagenes <- list.files(carpeta)
+imagenes<-imagenes[jpg==".jpg"]
 r <- 0
 
 lista <- NULL
@@ -33,6 +36,8 @@ while (!identical(imagenes, character(0))) {
   setwd(carpeta)
   r <- r + 1
   items<-unique(substr(sku(imagenes), 1, 10))
+  items<-items[!is.na(items)]
+  
   # Obteniendo un data frame con el sku y el peso de todas las imagenes
   z <- NULL
   for(i in 1:length(items)) {
@@ -41,6 +46,7 @@ while (!identical(imagenes, character(0))) {
     df <- data.frame("item" = items[i], bytes)
     z <- rbind(z, df)
   }
+  
 
   p <- NULL
   q <- NULL
@@ -58,12 +64,18 @@ while (!identical(imagenes, character(0))) {
     e <- imagenes[str_detect(imagenes, seleccion[j])]
     l <- c(l, e)
   }
+  nombrecarpeta<- paste(getwd(), "/Lote-", r, sep="")
+  
+  
+  dir.create(nombrecarpeta)
+  
+  file_move(l, nombrecarpeta)
 
-  nombrezip<-paste("Lote", r, ".zip", sep = "")
-  zip(nombrezip, l)
+  #nombrezip<-paste("Lote", r, ".zip", sep = "")
+  #zip(nombrezip, l)
   lista <- qpcR:::cbind.na(lista, seleccion)
 
-  file_move(nombrezip, guardar)
+  #file_move(nombrezip, guardar)
 
   for (k in 1:length(sku(l))) {
     imagenes <- imagenes[!str_detect(imagenes, sku(l)[k])]
@@ -77,4 +89,5 @@ colnames(lista) <- paste("Lote", 1:ncol(lista), sep = "")
 setwd(guardar)
 write.csv(lista,  "ListaLotes.csv")
 
-winDialog(type = "ok", message = "Lotes generados con exito")
+# winDialog(type = "ok", message = "Lotes generados con exito")
+print("Lote extraido con exito :)")

@@ -12,7 +12,7 @@ drive<-paste("C:/Users/", Sys.info()["user"],"/SERVICIOS SHASA S DE RL DE CV/Fot
 
 carpeta<-drive
 
-guardar <- choose.dir(caption = "¿En donde se guardara el lote?")
+guardar <- choose.dir(caption = "¿En donde se guardara el lote? Carpeta de preferencia vacia*")
 extraer <- read_excel("ItemsExtraer.xlsx")
 
 # Function ----------------------------------------------------------------
@@ -84,4 +84,5 @@ if  (file.exists(a)) {
 
 setwd(guardar)
 write.csv(lista,  "SubconjuntoItems.csv")
-winDialog(type="ok", message="Lote extraido con exito :)")
+# winDialog(type="ok", message=)
+print("Lote extraido con exito :)")

@@ -12,9 +12,9 @@ if (is.null(bloque)) {
   setwd(carpeta)
   imagenes<-list.files()
   itemsgenerados<-unique(sku(imagenes))
-  
 
-  winDialog(type="ok", message="Codigo .impex generado con exito")
+  # winDialog(type="ok", message="Codigo .impex generado con exito")
+  print("Codigo .impex generado con exito")
   
   setwd(resultados)
   
@@ -24,11 +24,3 @@ if (is.null(bloque)) {
   #write.table(bloque3, "ImpexContenedores.txt", row.names = FALSE, quote = FALSE, col.names = F)
   
 }
-
-
-
-
-
-
-
-
