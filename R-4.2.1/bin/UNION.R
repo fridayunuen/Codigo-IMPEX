@@ -1,6 +1,6 @@
 # inicio<-"C:/Users/fcolin/Documents/GitHub/Codigo-IMPEX/R-4.2.1/bin"
 
-inico<-paste("C:/Users/", Sys.info()["user"],"/Downloads/Aplicacion/Codigo-IMPEX/R-4.2.1/bin", sep="")
+inicio<-paste("C:/Users/", Sys.info()["user"],"/Downloads/Aplicacion/Codigo-IMPEX/R-4.2.1/bin", sep="")
 
 InicioProceso<-paste("Inicio de todo el proceso", Sys.time())
 
