@@ -70,9 +70,7 @@ while (!identical(imagenes, character(0))) {
     e <- imagenes[str_detect(imagenes, seleccion[j])]
     l <- c(l, e)
   }
-  nombrecarpeta<- paste(getwd(), "/Lote-", r, sep="")
-  
-  
+  nombrecarpeta <- paste(getwd(), "/Lote", r, "-", Sys.info()["user"], sep = "")
   dir.create(nombrecarpeta)
   
   file_move(l, nombrecarpeta)
@@ -88,10 +86,14 @@ while (!identical(imagenes, character(0))) {
   }
 }
 
-lista <- lista[, 2:ncol(lista)]
-
-colnames(lista) <- paste("Lote", 1:ncol(lista), sep = "")
- 
+if (ncol(lista) == 2) {
+  colnames(lista) <- c(NA,"Lote1")
+  lista <- lista[, 2:ncol(lista)]
+  
+} else {
+  lista <- lista[, 2:ncol(lista)]
+  colnames(lista) <- paste("Lote", 1:ncol(lista), "-", Sys.info()["user"], sep = "")
+}
 setwd(guardar)
 write.csv(lista,  "ListaLotes.csv")
 

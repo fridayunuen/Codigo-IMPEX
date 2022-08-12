@@ -69,7 +69,9 @@ if (!is.null(reporte)) {
 }
 print(paste("Inicio Primera extraccion", Sys.time()))
 
-a<-zip("ItemsSeleccionados.zip", moverzip)
+nomzip<-paste("ItemsSeleccionados-", Sys.info()["user"], ".zip", sep ="")
+
+a<-zip(nomzip, moverzip)
 
 print(paste("Fin primera extraccion", Sys.time()))
 
@@ -79,6 +81,8 @@ if  (file.exists(a)) {
 }
 
 setwd(guardar)
-write.csv(lista,  "SubconjuntoItems.csv")
+
+nomcsv<-paste("SubconjuntoItems-", Sys.info()["user"],".csv", sep ="")
+write.csv(lista,  nomcsv)
 # winDialog(type="ok", message=)
 print("Lote extraido con exito :)")

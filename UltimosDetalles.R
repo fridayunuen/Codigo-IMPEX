@@ -48,6 +48,9 @@ if (dir.exists(di_errores)) {
   if (identical(list.files(di_errores), character(0) )) {
     
     dir_delete(di_errores)
+  }else {
+    setwd(dirname(carpeta))
+    file_move(repname, di_errores)
   }
   
   

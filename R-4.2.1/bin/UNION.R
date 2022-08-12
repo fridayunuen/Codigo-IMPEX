@@ -1,14 +1,13 @@
-#inicio<-"C:/Users/fcolin/Documents/GitHub/Codigo-IMPEX/R-4.2.1/bin"
-#DirectorioPadre <-"C:/Users/fcolin/Documents/GitHub/Codigo-IMPEX/"
+# inicio<-"C:/Users/fcolin/Documents/GitHub/Codigo-IMPEX/R-4.2.1/bin"
+# DirectorioPadre <-"C:/Users/fcolin/Documents/GitHub/Codigo-IMPEX/"
 
 inicio<-paste("C:/Users/", Sys.info()["user"],"/Downloads/Aplicacion/Codigo-IMPEX/R-4.2.1/bin", sep="")
-DirectorioPadre <- paste("C:/Users/", Sys.info()["user"], "/Downloads/Aplicacion/Codigo-IMPEX", sep = "" )
+ DirectorioPadre <- paste("C:/Users/", Sys.info()["user"], "/Downloads/Aplicacion/Codigo-IMPEX", sep = "" )
 
  library(stringr)
  library(readxl)
  library(zip)
- 
- 
+
 InicioProceso<-paste("Inicio de todo el proceso", Sys.time())
 
 excel<-choose.files()
@@ -18,12 +17,14 @@ setwd(inicio)
 source("PrimeraExtraccion.R")
 
 ########################################
-# if
-file.exists("ItemsSeleccionados.zip")
+# if 
 
-unzip("ItemsSeleccionados.zip")
-
-file.remove("ItemsSeleccionados.zip")
+if (file.exists(nomzip)) {
+  unzip(nomzip)
+  file.remove(nomzip)
+}else{
+  print("No se genero el zip inicial correctamente")
+}
 
 
 # 
@@ -55,18 +56,11 @@ if (!identical(errores, character(0))) {
     guion<-str_locate(a, "_")[1:length(imagenes)]
     substr(a, start = 1, stop = guion-1)
   }
-  
-  sku_errores<-unique(sku(errores))
-  
+  sku_errores <- unique(sku(errores))
   for (i in 1:length(sku_errores)) {
-    
-    imagenes_error<-imagenes[str_detect(imagenes, sku_errores[i])]
-    
+    imagenes_error <- imagenes[str_detect(imagenes, sku_errores[i])]
     file_move(imagenes_error, e)
-    
   }
-  
-  
 }
 
 
@@ -85,7 +79,7 @@ setwd(inicio)
 
 files<-list.dirs(carpeta)
 
-dirlotes<-files[str_detect(files, "Lote-")]
+dirlotes<-files[str_detect(files, "Lote")]
 
 
 print(paste("Inicio Creacion IMPEX", Sys.time()))
@@ -94,8 +88,11 @@ for (t in 1:length(dirlotes)) {
   carpeta<-dirlotes[t]
   setwd(DirectorioPadre)
   source("Ejecutable.R")
+  source("ReporteCompartido.R")
+  source("nosku.R")
   setwd(guardar)
   dir_delete(carpeta)
+  
 }
 
 print(paste("Fin Creacion IMPEX", Sys.time()))

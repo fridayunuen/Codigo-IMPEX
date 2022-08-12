@@ -81,10 +81,14 @@ reporte<-rbind(
     
     setwd(guardar)
     
-    write.table(reporte, "Reporte.txt", row.names = F, quote = FALSE)
+    repname <- paste("Reporte", basename(carpeta), ".txt", sep = "")
     
-    winDialog(type="ok", message="Errores localizados. Revise reporte 
-              y carpeta de errores")
+    write.table(reporte, repname, row.names = F, quote = FALSE)
+    
+    print("Errores localizados. Revise reporte y carpeta de errores")
+    
+    # winDialog(type="ok", message="Errores localizados. Revise reporte 
+    #y carpeta de errores")
     
   }
   
