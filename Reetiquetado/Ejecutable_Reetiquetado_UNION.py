@@ -28,7 +28,6 @@ if "_" in base_name_carpeta:
     elif d==2:
         exit()
     
-
 os.chdir(carpeta) # Changes directory to opened path.
 files = os.listdir()
 
@@ -55,22 +54,22 @@ if len(error_paths) == 0:
     win32ui.MessageBox("La carpeta no contiene archivos con error :)", "Mensaje",0)
     exit()
 
+ec = "S:/OMNI/ErroresCorregidos"
+# ec = "C:/Users/fcolin/Documents"
 
-ec = "S:\OMNI\ErroresCorregidos"
+
 # if exists ec folder, the program continues
+
 if not os.path.exists(ec):
     win32ui.MessageBox("Es necesario tener acceso a la carpeta S:\OMNI", "Error",0)
     exit()
     
 
-
 if os.path.exists(ec):
     # print("La carpeta de errores corregidos existe")
     pass
 else:
-    os.mkdir(ec)    
-
-
+    os.mkdir(ec)
 
 inicio=win32ui.MessageBox("Para reetiquetar las imagenes de acuerdo a la posición del item, utiliza las teclas: \n\n W: Frontal \n S: Trasera \n A: Izquierda \n D: Derecha", "Instrucciones Generales",1)
 if inicio==2:
@@ -134,6 +133,7 @@ for path in productos_error:
 
 # files in the folder 'error'
 error_files = os.listdir(carpeta + '\\Errores')
+
 # change directory to 'error'
 os.chdir(carpeta + '\\Errores')
 
@@ -152,8 +152,8 @@ for i in range(len(no_error_paths)):
     
     tipo2 = tipo.replace("_", "-new_")
     os.rename(imagen, imagen.replace(tipo, tipo2))
-        
-principales = [error_paths for error_paths in error_paths if "515Wx515" in error_paths]
+
+principales = [error_paths for error_paths in error_paths if "515Wx515" in error_paths]        
 
 def seleccion(imagen): 
     img = cv2.imread(imagen)
@@ -186,6 +186,8 @@ def seleccion(imagen):
         new_label="_Trasera-new_"
     
     return new_label
+
+
 for i in range(len(principales)):
     imagen = principales[i]
 
@@ -230,29 +232,9 @@ for i in range(len(principales)):
                     imagen3 = imagen2.replace(no_vista, "_2.")
                     imagen3 = imagen3.replace(tipo, new_label)
                     os.rename(imagen2, imagen3)
-
-if not os.path.exists(ec):
-    os.mkdir(ec)
-
-files=os.listdir()
-for i in range(len(files)):
-    if '-' not in files[i]:
-        #base_name=carpeta[:-len(os.path.basename(carpeta))]
-        if not os.path.exists(ec+"/Repeticiones"):
-            os.mkdir(ec+"/Repeticiones")
-        os.rename(files[i], ec+"/Repeticiones/"+files[i])
-        
-        
+                    
 files= os.listdir()
-for i in range(len(files)):
-    os.rename(files[i],files[i].replace('-new', ''))
 
-# if there exists a folder called "Repeticiones" show a message
-if os.path.exists(base_name_carpeta+"Repeticiones"):
-    win32ui.MessageBox("Existen Archivos con mas de 2 vistas, revisar carpeta repeticiones", "Error", 0)
-
-files= os.listdir()
-files
 error_files
 import pandas as pd
 # create a table with files and error files as columns
@@ -265,11 +247,38 @@ table['Error Files'] = error_files
 table = table.drop_duplicates(subset=['Files', 'Error Files'], keep='first')
 
 
+
+files=os.listdir()
+for i in range(len(files)):
+    if '-' not in files[i]:
+        base_name=carpeta[:-len(os.path.basename(carpeta))]
+        if not os.path.exists(base_name+"/Repeticiones"):
+            os.mkdir(base_name+"/Repeticiones")
+        os.rename(files[i], base_name+"/Repeticiones/"+files[i])
+        
+        
+files= os.listdir()
+for i in range(len(files)):
+    os.rename(files[i],files[i].replace('-new', ''))
+
+# if there exists a folder called "Repeticiones" show a message
+if os.path.exists(base_name_carpeta+"Repeticiones"):
+    win32ui.MessageBox("Existen Archivos con mas de 2 vistas, revisar carpeta repeticiones", "Error", 0)
+
+
+table = pd.DataFrame(columns=['Files', 'Error Files'])
+
 day = datetime.datetime.now().strftime("%d-%m-%Y")  
 hour = datetime.datetime.now().strftime("%H-%M-%S")
 
-if not os.path.exists(ec+"\\Transformaciones("+day+"_"+hour+").csv"):    
-    table.to_csv(ec+"\\Transformaciones("+day+"_"+hour+").csv", index=False)
+if os.path.exists("S:/OMNI"):
+    if not os.path.exists(ec):
+        os.mkdir(ec)
+
+    if not os.path.exists(ec+"\\Transformaciones("+day+"_"+hour+").csv"):    
+        table.to_csv(ec+"\\Transformaciones("+day+"_"+hour+").csv", index=False)
+else:
+     table.to_csv(carpeta+"\\ENVIAR-A-RESPONSABLE-Transformaciones("+day+"_"+hour+").csv", index=False)       
 
 # get all paths in directory
 files = os.listdir()
@@ -291,11 +300,41 @@ else:
 
 Fuera = carpeta.replace(base_name_carpeta, "")
 os.chdir(Fuera)
-# changing name of carpeta to ErroresCorregidos
+
 EC = carpeta.replace(base_name_carpeta, "ErroresCorregidos")
+# changing name of carpeta to carpeta_new
 os.rename(carpeta, EC)
 
+resultados = carpeta.replace(base_name_carpeta, "Resultado-ErroresCorregidos")
 
-del  carpeta, files, paths, principales, imagen, new_label   
+# create a folder called Resultado-ErroresCorregidos
+if not os.path.exists(resultados):
+    os.mkdir(resultados)
 
-print("Reetiquetado completado :)")
+# get the user name 
+user = os.getenv('USERNAME')
+
+Aplicacion = "C:/Users/"+ user +"/Downloads/Aplicacion/Codigo-IMPEX/R-4.2.1/bin"
+
+#change directory to Aplicacion
+os.chdir(Aplicacion)
+
+os.system("Rscript EjecutableLotes.R")
+# change directory to Resultado-ErroresCorregidos
+os.chdir(EC)
+
+# files in ErroresCorregidos folder
+lista = os.listdir()
+
+# move a file to Resultado-ErroresCorregidos
+listadir = EC+"\\" + lista[0]
+listadirnew = listadir.replace("ErroresCorregidos", "Resultado-ErroresCorregidos")
+
+os.rename(listadir, listadirnew)
+
+os.chdir(resultados)
+
+if os.listdir(EC) == []:
+    os.rmdir(EC)
+
+    
