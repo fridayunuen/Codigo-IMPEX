@@ -1,0 +1,127 @@
+carpeta <- choose.dir( caption = "Seleccione la carpeta que contiene las imagenes")
+#guardar <- choose.dir( caption = "Seleccione la carpeta donde se guardaran los lotes")
+#carpeta<-guardar 
+guardar<-carpeta
+
+megas <- 32
+
+library(stringr)
+library(fs)
+#install.packages("qpcR")                            # Install qpcR package
+library("qpcR") 
+
+nombre <- function(imagenes){
+  guion <- str_locate(imagenes, "_")[1:length(imagenes)]
+  substr(imagenes, start = guion +1, stop = nchar(imagenes)-4)
+}
+sku <- function(imagenes){
+  guion<-str_locate(nombre(imagenes), "_")[1:length(imagenes)]
+  a<-substr(nombre(imagenes), start = guion+1, stop = nchar(imagenes))
+  guion<-str_locate(a, "_")[1:length(imagenes)]
+  substr(a, start = 1, stop = guion-1)
+}
+
+
+# -----------------------------------------------------------------------------
+requerimiento <- (megas * 1000000)
+
+library(zip)
+
+imagenes <- list.files(carpeta, include.dirs = F)
+jpg<-substr(imagenes, start = nchar(imagenes)-3, stop = (nchar(imagenes)))
+imagenes<-imagenes[jpg==".jpg"]
+imagenes<-imagenes[!is.na(sku(imagenes))]
+
+
+r <- 0
+
+lista <- NULL
+while (!identical(imagenes, character(0))) {
+  setwd(carpeta)
+  r <- r + 1
+  items<-unique(substr(sku(imagenes), 1, 10))
+  items<-items[!is.na(items)]
+  
+  # Obteniendo un data frame con el sku y el peso de todas las imagenes
+  z <- NULL
+  for(i in 1:length(items)) {
+    unitem <- imagenes[str_detect(imagenes, items[i])]
+    bytes <- sum(file.size(unitem))
+    df <- data.frame("item" = items[i], bytes)
+    z <- rbind(z, df)
+  }
+  
+  
+  p <- NULL
+  q <- NULL
+  for (i in 1:length(z$bytes)) {
+    q <- c(q, z$bytes[i])
+    if (sum(q)<requerimiento) {
+      p <- c(p, z$bytes[i])
+    }else{
+      p <- c(p, 0)
+    }    
+  }
+  seleccion <- z[p!=0, ]$item
+  l <- NULL
+  for (j in 1:length(seleccion)) {
+    e <- imagenes[str_detect(imagenes, seleccion[j])]
+    l <- c(l, e)
+  }
+  nombrecarpeta <- paste(getwd(), "/Lote", r, "-", Sys.info()["user"], sep = "")
+  dir.create(nombrecarpeta)
+  
+  file_move(l, nombrecarpeta)
+  
+  #nombrezip<-paste("Lote", r, ".zip", sep = "")
+  #zip(nombrezip, l)
+  lista <- qpcR:::cbind.na(lista, seleccion)
+  
+  #file_move(nombrezip, guardar)
+  
+  for (k in 1:length(sku(l))) {
+    imagenes <- imagenes[!str_detect(imagenes, sku(l)[k])]
+  }
+}
+
+if (ncol(lista) == 2) {
+  colnames(lista) <- c(NA,"Lote1")
+  lista <- lista[, 2:ncol(lista)]
+  
+} else {
+  lista <- lista[, 2:ncol(lista)]
+  colnames(lista) <- paste("Lote", 1:ncol(lista), "-", Sys.info()["user"], sep = "")
+}
+setwd(guardar)
+write.csv(lista,  "ListaLotes.csv")
+
+# winDialog(type = "ok", message = "Lotes generados con exito")
+print("Lote extraido con exito :)")
+
+
+inicio<-paste("C:/Users/", Sys.info()["user"],"/Downloads/Aplicacion/Codigo-IMPEX/R-4.2.1/bin", sep="")
+DirectorioPadre <- paste("C:/Users/", Sys.info()["user"], "/Downloads/Aplicacion/Codigo-IMPEX", sep = "" )
+excel<-choose.files()
+guardar<- choose.dir()
+
+setwd(inicio)
+
+files<-list.dirs(carpeta)
+
+
+dirlotes<-files[str_detect(files, "Lote")]
+
+
+print(paste("Inicio Creacion IMPEX", Sys.time()))
+
+for (t in 1:length(dirlotes)) {
+  carpeta<-dirlotes[t]
+  setwd(DirectorioPadre)
+  source("Ejecutable.R")
+  source("ReporteCompartido.R")
+  source("nosku.R")
+  setwd(guardar)
+  dir_delete(carpeta)
+  
+}
+
