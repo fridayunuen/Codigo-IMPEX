@@ -13,6 +13,8 @@ for (i in 1:length(items)) {
   repo<-NULL
   repo2<-NULL
 
+ 
+  
   if (sum(str_detect(cubo, items[i]))==0) {
     repo<-items[i]
 

@@ -1,6 +1,7 @@
 
+
 if(!is.null(reporte)){
-  if(unique(reporte$Estado) == "El SKU no se encuentra en cubo"){
+  if(sum(unique(reporte$Estado) == "El SKU no se encuentra en cubo")>=0){
     
     Producto<-reporte$Archivo
     

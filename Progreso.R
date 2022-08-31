@@ -50,51 +50,61 @@ if (is.na(carpeta) | is.na(guardar)) {
     setTkProgressBar(pb, w, label = pctg)
     w<-w+1
     
-    setwd(DirectorioPadre)
-    source("GeneracionTallas.R")
-    pctg <- paste(round(w/11 *100, 0), "% completado")
-    setTkProgressBar(pb, w, label = pctg)
-    w<-w+1
+    imagenes<-list.files(carpeta)
+    items<-unique(sku(imagenes))
     
-    #setwd(DirectorioPadre)
-    #source("ItemsUnicosFamilia.R")
-    #pctg <- paste(round(w/11 *100, 0), "% completado")
-    #setTkProgressBar(pb, w, label = pctg)
-    #w<-w+1
+    if(!identical(imagenes, character(0))){
+      
+      setwd(DirectorioPadre)
+      source("GeneracionTallas.R")
+      pctg <- paste(round(w/11 *100, 0), "% completado")
+      setTkProgressBar(pb, w, label = pctg)
+      w<-w+1
+      
+      #setwd(DirectorioPadre)
+      #source("ItemsUnicosFamilia.R")
+      #pctg <- paste(round(w/11 *100, 0), "% completado")
+      #setTkProgressBar(pb, w, label = pctg)
+      #w<-w+1
+      
+      setwd(DirectorioPadre)
+      source("CodigoItemsUnicos.R")
+      pctg <- paste(round(w/11 *100, 0), "% completado")
+      setTkProgressBar(pb, w, label = pctg)
+      w<-w+1
+      
+      # setwd(DirectorioPadre)
+      # source("CodigoItemsFamilia.R")
+      # pctg <- paste(round(w/11 *100, 0), "% completado")
+      # setTkProgressBar(pb, w, label = pctg)
+      # w<-w+1
+      
+      setwd(DirectorioPadre)
+      source("UltimosDetalles.R")
+      pctg <- paste(round(w/11 *100, 0), "% completado")
+      setTkProgressBar(pb, w, label = pctg)
+      w<-w+1
+      
+      setwd(DirectorioPadre)
+      source("Lotes.R")
+      pctg <- paste(round(w/11 *100, 0), "% completado")
+      setTkProgressBar(pb, w, label = pctg)
+      w<-w+1
+      
+      setwd(DirectorioPadre)
+      source("Impresion.R")
+      pctg <- paste(round(w/11 *100, 0), "% completado")
+      setTkProgressBar(pb, w, label = pctg)
+      w<-w+1
+      
+      Sys.sleep(0.7)
+      close(pb) # Cerramos la conexión
+      
+      
+    }else{
+      print("Carpeta vacia, revisar errores")
+    }
     
-    setwd(DirectorioPadre)
-    source("CodigoItemsUnicos.R")
-    pctg <- paste(round(w/11 *100, 0), "% completado")
-    setTkProgressBar(pb, w, label = pctg)
-    w<-w+1
-    
-    # setwd(DirectorioPadre)
-    # source("CodigoItemsFamilia.R")
-    # pctg <- paste(round(w/11 *100, 0), "% completado")
-    # setTkProgressBar(pb, w, label = pctg)
-    # w<-w+1
-    
-    setwd(DirectorioPadre)
-    source("UltimosDetalles.R")
-    pctg <- paste(round(w/11 *100, 0), "% completado")
-    setTkProgressBar(pb, w, label = pctg)
-    w<-w+1
-    
-    setwd(DirectorioPadre)
-    source("Lotes.R")
-    pctg <- paste(round(w/11 *100, 0), "% completado")
-    setTkProgressBar(pb, w, label = pctg)
-    w<-w+1
-    
-    setwd(DirectorioPadre)
-    source("Impresion.R")
-    pctg <- paste(round(w/11 *100, 0), "% completado")
-    setTkProgressBar(pb, w, label = pctg)
-    w<-w+1
-    
-    Sys.sleep(0.7)
-    close(pb) # Cerramos la conexión
-
   }
   
   
