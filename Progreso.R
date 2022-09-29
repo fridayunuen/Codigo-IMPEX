@@ -107,6 +107,7 @@ if (is.na(carpeta) | is.na(guardar)) {
     
   }
   
+  t<-2
   
   
 }

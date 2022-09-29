@@ -100,6 +100,3 @@ write.csv(lista,  "ListaLotes.csv")
 
 # winDialog(type = "ok", message = "Lotes generados con exito")
 print("Lote extraido con exito :)")
-
-
-

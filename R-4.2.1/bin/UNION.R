@@ -1,8 +1,8 @@
-# inicio<-"C:/Users/fcolin/Documents/GitHub/Codigo-IMPEX/R-4.2.1/bin"
-# DirectorioPadre <-"C:/Users/fcolin/Documents/GitHub/Codigo-IMPEX/"
+inicio<-"C:/Users/fcolin/Documents/GitHub/Codigo-IMPEX/R-4.2.1/bin"
+DirectorioPadre <-"C:/Users/fcolin/Documents/GitHub/Codigo-IMPEX/"
 
-inicio<-paste("C:/Users/", Sys.info()["user"],"/Downloads/Aplicacion/Codigo-IMPEX/R-4.2.1/bin", sep="")
-DirectorioPadre <- paste("C:/Users/", Sys.info()["user"], "/Downloads/Aplicacion/Codigo-IMPEX", sep = "" )
+#inicio<-paste("C:/Users/", Sys.info()["user"],"/Downloads/Aplicacion/Codigo-IMPEX/R-4.2.1/bin", sep="")
+#DirectorioPadre <- paste("C:/Users/", Sys.info()["user"], "/Downloads/Aplicacion/Codigo-IMPEX", sep = "" )
 
  library(stringr)
  library(readxl)
@@ -90,6 +90,7 @@ for (t in 1:length(dirlotes)) {
   print(carpeta)
   source("Ejecutable.R")
   source("ReporteCompartido.R")
+  setwd(DirectorioPadre)
   source("nosku.R")
   setwd(guardar)
   dir_delete(carpeta)

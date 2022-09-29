@@ -1,5 +1,3 @@
-
-
 if(!is.null(reporte)){
   if(sum(unique(reporte$Estado) == "El SKU no se encuentra en cubo")>=0){
     
